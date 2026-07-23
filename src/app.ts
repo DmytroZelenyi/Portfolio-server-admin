@@ -119,7 +119,7 @@ app.get('/api/github-repos', async (req, res) => {
         );
  
         if (!githubResponse.ok) {
-            throw new Error(`GitHub API відповів ${githubResponse.status}`);
+            throw new Error(`GitHub API ${githubResponse.status}`);
         }
  
         const repos = (await githubResponse.json()) as { fork: boolean }[];

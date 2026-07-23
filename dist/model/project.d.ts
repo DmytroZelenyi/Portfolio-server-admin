@@ -12,4 +12,4 @@ export declare const Project: import("mongoose").Model<IProject, {}, {}, {}, Doc
 } & {
     id: string;
 }, any, IProject>;
-//# sourceMappingURL=project.d.ts.map
+//# sourceMappingURL=Project.d.ts.map

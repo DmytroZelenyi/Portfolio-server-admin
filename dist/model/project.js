@@ -9,4 +9,4 @@ const projectSchema = new mongoose_1.Schema({
     description: { type: String },
 });
 exports.Project = (0, mongoose_1.model)("Project", projectSchema);
-//# sourceMappingURL=project.js.map
+//# sourceMappingURL=Project.js.map

@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const Skill_1 = require("./model/Skill");
-const project_1 = require("./model/project");
+const Project_1 = require("./model/Project");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -61,7 +61,7 @@ app.delete('/api/skills/:id', async (req, res) => {
 });
 app.get('/api/projects', async (req, res) => {
     try {
-        const projects = await project_1.Project.find();
+        const projects = await Project_1.Project.find();
         res.json(projects);
     }
     catch (error) {
@@ -71,7 +71,7 @@ app.get('/api/projects', async (req, res) => {
 });
 app.post('/api/projects', async (req, res) => {
     try {
-        const newProject = new project_1.Project(req.body);
+        const newProject = new Project_1.Project(req.body);
         const savedProject = await newProject.save();
         res.json(savedProject);
     }
@@ -82,7 +82,7 @@ app.post('/api/projects', async (req, res) => {
 });
 app.delete('/api/projects/:id', async (req, res) => {
     try {
-        const deletedProject = await project_1.Project.findByIdAndDelete(req.params.id);
+        const deletedProject = await Project_1.Project.findByIdAndDelete(req.params.id);
         if (!deletedProject) {
             return res.status(404).json({ error: 'Project not found' });
         }
@@ -111,7 +111,7 @@ app.get('/api/github-repos', async (req, res) => {
             },
         });
         if (!githubResponse.ok) {
-            throw new Error(`GitHub API відповів ${githubResponse.status}`);
+            throw new Error(`GitHub API ${githubResponse.status}`);
         }
         const repos = (await githubResponse.json());
         const ownRepos = repos.filter((repo) => !repo.fork);
@@ -121,7 +121,7 @@ app.get('/api/github-repos', async (req, res) => {
     }
     catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Не вдалося отримати репозиторії з GitHub' });
+        res.status(500).json({ error: 'Cant get repo from GitHub' });
     }
 });
 app.listen(PORT, () => {
